@@ -2,6 +2,11 @@
   "name": "react-component-packages",
   "version": "1.4.0",
   "main": "src/index.jsx",
+  "private": true,
+  "workspaces": [
+    "src/packages/header",
+    "src/packages/footer"
+  ],
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --hot --config webpack.dev.babel.js",
     "dev": "cross-env NODE_ENV=development webpack --config webpack.dev.babel.js",
@@ -75,8 +80,8 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
-    "@react-component-packages/header": "^1.0.0",
-    "@react-component-packages/footer": "^1.0.0",
+    "@react-component-packages/header": "1.0.0",
+    "@react-component-packages/footer": "1.0.0",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-hot-loader": "^4.3.11",
