@@ -1,7 +1,6 @@
 {
   "name": "react-component-packages",
   "version": "1.4.0",
-  "description": "",
   "main": "src/index.jsx",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --hot --config webpack.dev.babel.js",
@@ -46,9 +45,6 @@
     "copy-webpack-plugin": "^4.5.4",
     "cross-env": "^5.2.0",
     "css-loader": "^1.0.0",
-    "enzyme": "^3.7.0",
-    "enzyme-adapter-react-16": "^1.6.0",
-    "enzyme-to-json": "^3.3.4",
     "eslint": "^5.8.0",
     "eslint-config-airbnb": "17.1.0",
     "eslint-config-prettier": "^3.1.0",
@@ -83,7 +79,6 @@
     "react-dom": "^16.6.0",
     "react-hot-loader": "^4.3.11",
     "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1",
     "regenerator-runtime": "^0.12.1"
   },
   "browserslist": {
