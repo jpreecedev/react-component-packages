@@ -1,14 +1,17 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { resolve } from 'path'
-import HtmlWebPackPlugin from 'html-webpack-plugin'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import CopyWebpackPlugin from 'copy-webpack-plugin'
-import CleanWebpackPlugin from 'clean-webpack-plugin'
-import webpack from 'webpack'
+const { resolve } = require('path')
+const HtmlWebPackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const webpack = require('webpack')
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
-export default {
+module.exports = {
+  devServer: {
+    port: 9955
+  },
   entry: {
     main: resolve('./src/index.jsx')
   },
