@@ -119,6 +119,6 @@ export default {
       'window.react': 'React',
       'window.React': 'React'
     }),
-    new CopyWebpackPlugin([{ from: './public' }])
+    new CopyWebpackPlugin([{ from: '../../../public' }])
   ]
 }
