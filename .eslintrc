@@ -9,11 +9,9 @@
     }
   },
   "env": {
-    "browser": true,
-    "jest/globals": true
+    "browser": true
   },
-  "plugins": ["jest"],
-  "extends": ["airbnb", "prettier", "plugin:jest/recommended"],
+  "extends": ["airbnb", "prettier"],
   "rules": {
     "react/prop-types": "off"
   }

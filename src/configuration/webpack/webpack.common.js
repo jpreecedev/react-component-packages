@@ -121,7 +121,6 @@ module.exports = {
       react: 'React',
       'window.react': 'React',
       'window.React': 'React'
-    }),
-    new CopyWebpackPlugin([{ from: './public' }])
+    })
   ]
 }
