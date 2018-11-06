@@ -2,7 +2,6 @@
 const { resolve } = require('path')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const webpack = require('webpack')
 
@@ -98,6 +97,9 @@ module.exports = {
         ]
       }
     ]
+  },
+  stats: {
+    colors: true
   },
   resolve: {
     extensions: ['.js', '.jsx', '.scss', '.gif', '.png', '.jpg', '.jpeg', '.svg']

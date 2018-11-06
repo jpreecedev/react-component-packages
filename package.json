@@ -7,8 +7,8 @@
     "src/packages/*"
   ],
   "scripts": {
-    "build:dev": "jp-scripts --dev --build --webpack-config ./src/configuration/webpack",
-    "start:dev": "jp-scripts --dev --start --webpack-config ./src/configuration/webpack",
+    "build:dev": "cross-env NODE_ENV=development jp-scripts --build --webpack-config ./src/configuration/webpack/webpack.dev.config.js",
+    "start:dev": "cross-env NODE_ENV=development jp-scripts --start --webpack-config ./src/configuration/webpack/webpack.dev.config.js",
     "lint": "eslint --fix ./src"
   },
   "repository": {

@@ -1,11 +1,11 @@
 {
   "name": "@react-component-packages/footer",
   "version": "1.0.0",
-  "main": "dist/footer.js",
+  "main": "dist/main.js",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env NODE_ENV=development jp-scripts --dev --start --webpack-config ../../configuration/webpack",
-    "build": "cross-env NODE_ENV=development jp-scripts --dev --build --webpack-config ../../configuration/webpack",
+    "build:dev": "cross-env NODE_ENV=development jp-scripts --build --webpack-config ../../configuration/webpack/webpack.dev.config.js",
+    "start:dev": "cross-env NODE_ENV=development jp-scripts --start --webpack-config ../../configuration/webpack/webpack.dev.config.js",
     "lint": "eslint ./src"
   },
   "devDependencies": {
