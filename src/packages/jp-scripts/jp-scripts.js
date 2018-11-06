@@ -6,7 +6,7 @@ const { initialize, build, buildAll, start } = require('./src/webpack')
 
 program
   .version('1.0.0')
-  .option('-a, --all', 'Webpack Configuration Path')
+  .option('-a, --all', 'Builds all components')
   .option('-wc, --webpack-config [path]', 'Webpack Configuration Path')
   .option('-b, --build', 'Build Webpack Bundle')
   .option('-r, --root', 'Is Root Project')

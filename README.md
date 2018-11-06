@@ -29,6 +29,26 @@ This repository makes heavy use of `yarn link` to remove the need to publish pac
 4. To start the development server, run `yarn start:dev`
 5. Optionally, `cd` into each package and run using `yarn start:dev`. Note, all packages are configured to run on the same port so its not advisable to run more than one component at once.
 
-## Issues
+### jp-scripts
 
-1. Webpack runs asynchronously, need to utilise hooks API to chain calls
+Contains the logic needed to execute the given webpack configuration file. Supported flags are as follows;
+
+| Short | Long                    | Description                                                                                |
+| ----- | ----------------------- | ------------------------------------------------------------------------------------------ |
+| -a    | --all                   | Builds all components that live in `src/packages`                                          |
+| -wc   | --webpack-config [path] | Webpack configuration file path                                                            |
+| -b    | --build                 | Builds the app or component using Webpack config file                                      |
+| -r    | --root                  | States this is the App and not an individual component                                     |
+| -s    | --start                 | Builds using the given Webpack config file and then starts Webpack Dev Server on port 9955 |
+
+Example usage as shown in `package.json`;
+
+```json
+  "scripts": {
+    "build:components:dev": "jp-scripts --all --webpack-config ./src/configuration/webpack/webpack.dev.config.js",
+    "build:dev": "cross-env NODE_ENV=development jp-scripts --build --root --webpack-config ./src/configuration/webpack/webpack.dev.config.js",
+    "build:prod": "cross-env NODE_ENV=production jp-scripts --build --root --webpack-config ./src/configuration/webpack/webpack.prod.config.js",
+    "start:dev": "cross-env NODE_ENV=development jp-scripts --start --root --webpack-config ./src/configuration/webpack/webpack.dev.config.js",
+    "lint": "eslint --fix ./src"
+  },
+```
