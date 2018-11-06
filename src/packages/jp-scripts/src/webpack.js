@@ -1,9 +1,54 @@
-/* eslint-disable import/no-dynamic-require, global-require */
+/* eslint-disable import/no-dynamic-require, global-require, import/no-extraneous-dependencies, class-methods-use-this */
 
-const { join, resolve } = require('path')
 const Webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
+const { join, resolve } = require('path')
+const { sync } = require('glob')
 const log = require('./log')
+
+const processPackage = (packagePath, configPath) =>
+  new Promise((resolvePromise, reject) => {
+    const config = require(configPath)
+    config.output = {
+      ...config.output,
+      libraryTarget: 'commonjs2'
+    }
+
+    process.chdir(packagePath)
+
+    config.entry = {
+      main: resolve('./main.js')
+    }
+
+    const compiler = Webpack(config)
+    compiler.run((err, stats) => {
+      let messages
+      if (err) {
+        if (!err.message) {
+          return reject(err)
+        }
+        messages = {
+          errors: [err.message],
+          warnings: []
+        }
+      } else {
+        messages = stats.toJson({ all: false, warnings: true, errors: true })
+      }
+      if (messages.errors.length) {
+        if (messages.errors.length > 1) {
+          messages.errors.length = 1
+        }
+        return reject(new Error(messages.errors.join('\n\n')))
+      }
+
+      const resolveArgs = {
+        stats,
+        warnings: messages.warnings
+      }
+
+      return resolvePromise(resolveArgs)
+    })
+  })
 
 const initialize = program => {
   const configFile = join(process.cwd(), program.webpackConfig)
@@ -15,39 +60,53 @@ const initialize = program => {
   return { configFile }
 }
 
-const build = configPath => {
+const build = (configPath, root) => {
   const config = require(configPath)
-  config.output = {
-    ...config.output
-  }
 
-  config.entry = {
-    main: resolve('./main.js')
-  }
+  if (!root) {
+    config.output = {
+      ...config.output,
+      libraryTarget: 'commonjs2'
+    }
 
-  delete config.externals
+    config.entry = {
+      main: resolve('./main.js')
+    }
+  }
 
   Webpack(config, (err, stats) => {
     process.stdout.write(stats.toString())
   })
 }
 
+const buildAll = configPath => {
+  const packages = sync(join(process.cwd(), 'src/packages/!(jp-scripts)'))
+
+  packages.reduce(
+    (promise, packagePath) => promise.then(() => processPackage(packagePath, configPath)),
+    Promise.resolve()
+  )
+}
+
 const start = configPath => {
   const config = require(configPath)
-  const compiler = Webpack(config)
-  const devServerOptions = {
-    ...config.devServer
-  }
 
-  const server = new WebpackDevServer(compiler, devServerOptions)
+  const server = new WebpackDevServer(Webpack(config), {
+    publicPath: config.output.publicPath,
+    hot: true,
+    headers: { 'Access-Control-Allow-Origin': '*' }
+  })
 
   server.listen(config.devServer.port, '127.0.0.1', () => {
-    log(`Starting server on http://localhost:${config.devServer.port}`)
+    setTimeout(() => {
+      log(`Server listening on http://localhost:${config.devServer.port}`)
+    }, 1000)
   })
 }
 
 module.exports = {
   build,
+  buildAll,
   initialize,
   start
 }

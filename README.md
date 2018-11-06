@@ -1,4 +1,5 @@
 # React Component Packages
+
 A repository that allows components to be built quickly and in isolation, and then exported so they can be consumed as part of a large front-end application.
 
 ## The problem
@@ -18,9 +19,16 @@ There were multiple considerations
 
 ## How to use
 
-It is highly recommend that you use Yarn, so that you can take advantage of [Yarn Workspaces](https://yarnpkg.com/lang/en/docs/workspaces/).  Using Yarn Workspaces will remove the need to run `yarn install` for each individual package, as running `yarn install` for the root level `package.json` will be sufficient.
+It is highly recommend that you use Yarn, so that you can take advantage of [Yarn Workspaces](https://yarnpkg.com/lang/en/docs/workspaces/). Using Yarn Workspaces will remove the need to run `yarn install` for each individual package, as running `yarn install` for the root level `package.json` will be sufficient.
 
-This repository makes heavy use of `yarn link` to remove the need to publish packages to a central registry.  In a real-world environment, it would be desirable to publish packages to a central registry and manage versions using a tool such as `yarn publish` or [Lerna](https://github.com/lerna/lerna).
+This repository makes heavy use of `yarn link` to remove the need to publish packages to a central registry. In a real-world environment, it would be desirable to publish packages to a central registry and manage versions using a tool such as `yarn publish` or [Lerna](https://github.com/lerna/lerna).
 
-1. Clone or download the repository
+1. Clone or download the repository. Note that this project requires Node v8.11.3+.
 2. At the project root, run `yarn install` or simply `yarn`
+3. Before starting the development server, each component must be built. You can do this buy running `yarn build:components:dev`.
+4. To start the development server, run `yarn start:dev`
+5. Optionally, `cd` into each package and run using `yarn start:dev`. Note, all packages are configured to run on the same port so its not advisable to run more than one component at once.
+
+## Issues
+
+1. Webpack runs asynchronously, need to utilise hooks API to chain calls

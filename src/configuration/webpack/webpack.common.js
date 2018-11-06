@@ -2,18 +2,12 @@
 const { resolve } = require('path')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
 const webpack = require('webpack')
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 module.exports = {
-  devServer: {
-    port: 9955
-  },
-  entry: {
-    main: resolve('./src/index.jsx')
-  },
+  entry: [resolve('./src/index.jsx')],
   output: {
     filename: isDevelopment ? '[name].js' : '[name].[hash].js'
   },
@@ -109,7 +103,6 @@ module.exports = {
     'react-dom': 'ReactDOM'
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
     new HtmlWebPackPlugin({
       template: './src/index.html',
       filename: './index.html'
