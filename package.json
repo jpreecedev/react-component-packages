@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "build:dev": "cross-env NODE_ENV=development jp-scripts --build --webpack-config ./src/configuration/webpack/webpack.dev.config.js",
+    "build:prod": "cross-env NODE_ENV=production jp-scripts --build --webpack-config ./src/configuration/webpack/webpack.prod.config.js",
     "start:dev": "cross-env NODE_ENV=development jp-scripts --start --webpack-config ./src/configuration/webpack/webpack.dev.config.js",
     "lint": "eslint --fix ./src"
   },

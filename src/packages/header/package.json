@@ -1,7 +1,7 @@
 {
   "name": "@react-component-packages/header",
   "version": "1.0.0",
-  "main": "./main.js",
+  "main": "dist/main.js",
   "license": "MIT",
   "scripts": {
     "build:dev": "cross-env NODE_ENV=development jp-scripts --build --webpack-config ../../configuration/webpack/webpack.dev.config.js",

@@ -1,6 +1,6 @@
 /* eslint-disable import/no-dynamic-require, global-require */
 
-const { join } = require('path')
+const { join, resolve } = require('path')
 const Webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 const log = require('./log')
@@ -20,6 +20,12 @@ const build = configPath => {
   config.output = {
     ...config.output
   }
+
+  config.entry = {
+    main: resolve('./main.js')
+  }
+
+  delete config.externals
 
   Webpack(config, (err, stats) => {
     process.stdout.write(stats.toString())
