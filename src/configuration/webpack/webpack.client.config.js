@@ -28,8 +28,7 @@ let config = {
       'window.react': 'React',
       'window.React': 'React'
     }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.NamedModulesPlugin()
   ]
 }
 
@@ -38,13 +37,8 @@ if (isDevelopment) {
     ...config,
     mode: 'development',
     devtool: 'source-map',
-    entry: [
-      'webpack-dev-server/client?http://localhost:9955',
-      'webpack/hot/only-dev-server'
-    ],
     devServer: {
-      port: 9955,
-      hot: true
+      port: 9955
     }
   }
 }

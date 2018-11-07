@@ -1,7 +1,6 @@
 {
   "name": "react-component-packages",
   "version": "1.4.0",
-  "main": "src/index.jsx",
   "private": true,
   "workspaces": [
     "src/packages/*"

@@ -1,12 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const { resolve } = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 module.exports = {
   mode: 'production',
-  entry: [resolve('./src/index.jsx')],
   output: {
     filename: isDevelopment ? '[name].js' : '[name].[hash].js'
   },

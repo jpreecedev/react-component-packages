@@ -34,8 +34,7 @@ if (isDevelopment) {
   config = {
     ...config,
     devServer: {
-      port: 9955,
-      hot: true
+      port: 9955
     },
     devtool: 'source-map'
   }

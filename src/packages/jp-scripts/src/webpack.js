@@ -95,7 +95,6 @@ const start = configPath => {
   const serverConfig = getServerConfig(configs)
 
   const server = new WebpackDevServer(Webpack(serverConfig), {
-    hot: true,
     headers: { 'Access-Control-Allow-Origin': '*' }
   })
 
