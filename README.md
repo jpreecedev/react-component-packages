@@ -26,8 +26,8 @@ This repository makes heavy use of `yarn link` to remove the need to publish pac
 1. Clone or download the repository. Note that this project requires Node v8.11.3+.
 2. At the project root, run `yarn install` or simply `yarn`
 3. Before starting the development server, each component must be built. You can do this buy running `yarn build:components:dev`.
-4. To start the development server, run `yarn start:dev`
-5. Optionally, `cd` into each package and run using `yarn start:dev`. Note, all packages are configured to run on the same port so its not advisable to run more than one component at once.
+4. To start the development server, run `yarn start`
+5. Optionally, `cd` into each package and run using `yarn start`. Note, all packages are configured to run on the same port so its not advisable to run more than one component at once.
 
 ### jp-scripts
 
@@ -45,10 +45,10 @@ Example usage as shown in `package.json`;
 
 ```json
   "scripts": {
-    "build:components:dev": "jp-scripts --all --webpack-config ./src/configuration/webpack/webpack.dev.config.js",
-    "build:dev": "cross-env NODE_ENV=development jp-scripts --build --root --webpack-config ./src/configuration/webpack/webpack.dev.config.js",
+    "build:components:dev": "jp-scripts --all --webpack-config ./src/configuration/webpack/webpack.client.config.js",
+    "build:dev": "cross-env NODE_ENV=development jp-scripts --build --root --webpack-config ./src/configuration/webpack/webpack.client.config.js",
     "build:prod": "cross-env NODE_ENV=production jp-scripts --build --root --webpack-config ./src/configuration/webpack/webpack.prod.config.js",
-    "start:dev": "cross-env NODE_ENV=development jp-scripts --start --root --webpack-config ./src/configuration/webpack/webpack.dev.config.js",
+    "start": "cross-env NODE_ENV=development jp-scripts --start --root --webpack-config ./src/configuration/webpack/webpack.client.config.js",
     "lint": "eslint --fix ./src"
   },
 ```

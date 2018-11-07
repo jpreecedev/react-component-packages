@@ -1,12 +1,11 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const { resolve } = require('path')
-const HtmlWebPackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const webpack = require('webpack')
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 module.exports = {
+  mode: 'production',
   entry: [resolve('./src/index.jsx')],
   output: {
     filename: isDevelopment ? '[name].js' : '[name].[hash].js'
@@ -101,21 +100,5 @@ module.exports = {
   externals: {
     react: 'React',
     'react-dom': 'ReactDOM'
-  },
-  plugins: [
-    new HtmlWebPackPlugin({
-      template: './src/index.html',
-      filename: './index.html'
-    }),
-    new MiniCssExtractPlugin({
-      filename: isDevelopment ? '[name].css' : '[name].[hash].css',
-      chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
-    }),
-    new webpack.ProvidePlugin({
-      React: 'React',
-      react: 'React',
-      'window.react': 'React',
-      'window.React': 'React'
-    })
-  ]
+  }
 }

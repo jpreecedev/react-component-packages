@@ -6,6 +6,8 @@ const { join, resolve } = require('path')
 const { sync } = require('glob')
 const log = require('./log')
 
+const getServerConfig = configs => configs.find(config => config.target === 'node')
+
 const processPackage = (packagePath, configPath) =>
   new Promise((resolvePromise, reject) => {
     const config = require(configPath)
@@ -89,17 +91,17 @@ const buildAll = configPath => {
 }
 
 const start = configPath => {
-  const config = require(configPath)
+  const configs = require(configPath)
+  const serverConfig = getServerConfig(configs)
 
-  const server = new WebpackDevServer(Webpack(config), {
-    publicPath: config.output.publicPath,
+  const server = new WebpackDevServer(Webpack(serverConfig), {
     hot: true,
     headers: { 'Access-Control-Allow-Origin': '*' }
   })
 
-  server.listen(config.devServer.port, '127.0.0.1', () => {
+  server.listen(serverConfig.devServer.port, '127.0.0.1', () => {
     setTimeout(() => {
-      log(`Server listening on http://localhost:${config.devServer.port}`)
+      log(`Server listening on http://localhost:${serverConfig.devServer.port}`)
     }, 1000)
   })
 }

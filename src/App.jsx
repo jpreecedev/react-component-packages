@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { hot } from 'react-hot-loader'
 
 import { Header } from '@react-component-packages/header'
 import { Footer } from '@react-component-packages/footer'
@@ -14,4 +13,4 @@ function App() {
   )
 }
 
-export default hot(module)(App)
+export default App

@@ -1,11 +1,11 @@
 {
   "name": "@react-component-packages/header",
   "version": "1.0.0",
-  "main": "dist/main.js",
+  "main": "dist/client/main.js",
   "license": "MIT",
   "scripts": {
-    "build:dev": "cross-env NODE_ENV=development jp-scripts --build --webpack-config ../../configuration/webpack/webpack.dev.config.js",
-    "start:dev": "cross-env NODE_ENV=development jp-scripts --start --webpack-config ../../configuration/webpack/webpack.dev.config.js",
+    "build:dev": "cross-env NODE_ENV=development jp-scripts --build --webpack-config ../../configuration/webpack/webpack.client.config.js",
+    "start": "cross-env NODE_ENV=development jp-scripts --start --webpack-config ../../configuration/webpack/webpack.client.config.js",
     "lint": "eslint ./src"
   },
   "devDependencies": {
