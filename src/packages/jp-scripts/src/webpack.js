@@ -6,7 +6,12 @@ const { join, resolve } = require('path')
 const { sync } = require('glob')
 const log = require('./log')
 
-const getServerConfig = configs => configs.find(config => config.target === 'node')
+const getServerConfig = configs => {
+  if (Array.isArray(configs)) {
+    return configs.find(config => config.target === 'node')
+  }
+  return configs
+}
 
 const processPackage = (packagePath, configPath) =>
   new Promise((resolvePromise, reject) => {

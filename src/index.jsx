@@ -4,4 +4,4 @@ import App from './App'
 
 import './global/styles.scss'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.hydrate(<App />, document.getElementById('root'))
